@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="588fb551-51d3-4e73-90c6-e3810747d784" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Cleaver.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/armors.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/charactergen.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cleaverHex.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/generatinghex.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hexagon.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hexagontest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hexcount.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hextest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/namefile.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/skills.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="37Gvhhbk41Rj3M33M5jOdOkA9FR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.charactergen.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generatinghex.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hexagon.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hexagontest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hexcount.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hexcount2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.hextest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.namefile.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scratch_3.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Python&quot;
+    ]
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-41e8cd69c857-64d779b69b7a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26927.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="588fb551-51d3-4e73-90c6-e3810747d784" name="Changes" comment="" />
+      <created>1766542342204</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1766542342204</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/test.py</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
