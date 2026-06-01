@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="588fb551-51d3-4e73-90c6-e3810747d784" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Cleaver.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/armors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/charactergen.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cleaverHex.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generatinghex.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hexagon.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hexagontest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hexcount.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hextest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/namefile.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/skills.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/weapons.py" afterDir="false" />
+    <list default="true" id="588fb551-51d3-4e73-90c6-e3810747d784" name="Changes" comment="Initial Commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,33 +30,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.charactergen.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generatinghex.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hexagon.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hexagontest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hexcount.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hexcount2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.hextest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.namefile.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scratch_3.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.charactergen.executor": "Run",
+    "Python.generatinghex.executor": "Run",
+    "Python.hexagon.executor": "Run",
+    "Python.hexagontest.executor": "Run",
+    "Python.hexcount.executor": "Run",
+    "Python.hexcount2.executor": "Run",
+    "Python.hextest.executor": "Run",
+    "Python.namefile.executor": "Run",
+    "Python.scratch_2.executor": "Run",
+    "Python.scratch_3.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Python&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Python"
     ]
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -89,7 +72,20 @@
       <option name="presentableId" value="Default" />
       <updated>1766542342204</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <option name="closed" value="true" />
+      <created>1769116774876</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1769116774876</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
