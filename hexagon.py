@@ -15,7 +15,8 @@ import pygame
 
 
 @dataclass
-class HexagonTile:
+class \
+    HexagonTile:
     """Hexagon class"""
 
     radius: float
@@ -29,6 +30,7 @@ class HexagonTile:
     char_present: bool = False
     char_dir: int = 0
 
+    is_selected: bool = False
 
     def __post_init__(self):
         self.vertices = self.compute_vertices()
@@ -75,10 +77,16 @@ class HexagonTile:
         pygame.draw.polygon(screen, self.colour, self.vertices)
         pygame.draw.aalines(screen, (0, 0, 0), closed=True, points=self.vertices)
 
-    def render_highlight(self, screen, border_colour) -> None:
+    def render_highlight(self, screen) -> None:
         """Draws a border around the hexagon with the specified colour"""
         self.highlight_tick = self.max_highlight_ticks
         pygame.draw.polygon(screen, self.highlight_colour, self.vertices)
+        pygame.draw.aalines(screen, (0, 0, 0), closed=True, points=self.vertices)
+
+    def selected_highlight(self, screen) -> None:
+        """Draws a border around the hexagon with the specified colour"""
+        self.highlight_tick = self.max_highlight_ticks
+        pygame.draw.polygon(screen, self.selected_colour, self.vertices)
         pygame.draw.aalines(screen, (0, 0, 0), closed=True, points=self.vertices)
 
     @property
@@ -102,6 +110,20 @@ class HexagonTile:
         light_blue = (179, 251, 255)
 
         return light_blue
+
+    @property
+    def selected_colour(self) -> Tuple[int, ...]:
+        """Color of the hexagon tile when selected"""
+        green = (100, 255, 200)
+
+        return green
+
+    def select(self) -> bool:
+        """When function is run, alternates the 'is_selected' class"""
+        if self.is_selected:
+            return False
+        else:
+            return True
 
 
 class FlatTopHexagonTile(HexagonTile):

@@ -7,6 +7,7 @@ Created on Sun Jan 23 13:50:07 2022
 
 from hexagon import FlatTopHexagonTile
 from hexagon import HexagonTile
+import pygame
 import numpy as np
 
 def define_vectors(width: float, height: float, flat_top: bool, inverse: bool = False) -> list:
@@ -60,3 +61,40 @@ def centered_hexagons(num_in_direction, radius, screen_size, x_offset, flat_top 
     positions = [hexagon.position for hexagon in hexagons] # A list of all hexagon positions
 
     return hexagons, positions
+
+def hovered_hexagons(hexagons: list[HexagonTile]) -> list[HexagonTile]:
+    mouse_pos = pygame.mouse.get_pos()
+    hovered = [
+        hexagon for hexagon in hexagons if hexagon.collide_with_point(mouse_pos)
+    ]
+
+    return hovered
+
+def render(screen, input_hexagons):
+    """Renders hexagons on the screen"""
+    screen.fill((255, 255, 255))
+
+    hexagons = input_hexagons
+    hexagon_ids = [hexagon.tile_id for hexagon in input_hexagons]
+
+    global hexagons, hexagon_ids
+    for hexagon in hexagons:
+        hexagon.render(screen)
+
+    # draw borders around colliding hexagons and neighbours
+    colliding_hexagons = hovered_hexagons(hexagons)
+
+    for hexagon in colliding_hexagons:
+        hexagon.render_highlight(screen)
+
+    mouse_clicked = pygame.mouse.get_pressed(3)
+    # if mouse_clicked:
+    #     hex_id = colliding_hexagons[0].tile_id
+    #     index = hexagon_ids.index(hex_id)
+    #     hexagons
+
+    # selected_hexagons = [
+    #     hexagon if hexagon.is_selected for hexagon in hexagons
+    # ]
+
+    pygame.display.flip()
