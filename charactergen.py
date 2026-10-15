@@ -1,7 +1,6 @@
 import numpy as np
-import weapons
-import armors
-import skills
+from items import armors, weapons, skills
+
 
 # Defining class of 'character'
 class Character:
@@ -23,13 +22,13 @@ class Character:
 
 # Importing list of names
 lastNameList = []
-with open("lastnamelist.txt") as file:
+with open("names/lastnamelist.txt") as file:
     for line in file:
         stripped_line = line.strip()
         lastNameList.append(stripped_line)
 
 firstNameList = []
-with open("firstnamelist.txt") as file:
+with open("names/firstnamelist.txt") as file:
     for line in file:
         stripped_line = line.strip()
         firstNameList.append(stripped_line)

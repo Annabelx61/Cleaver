@@ -4,8 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="588fb551-51d3-4e73-90c6-e3810747d784" name="Changes" comment="Initial Commit">
+    <list default="true" id="588fb551-51d3-4e73-90c6-e3810747d784" name="Changes" comment="Initial commit for Cleaver the Pit!">
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/armors.py" beforeDir="false" afterPath="$PROJECT_DIR$/items/armors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/charactergen.py" beforeDir="false" afterPath="$PROJECT_DIR$/charactergen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cleaverHex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firstnamelist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/names/firstnamelist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generatinghex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexagontest.py" beforeDir="false" afterPath="$PROJECT_DIR$/scratch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexcount.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hexcount2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/hextest.py" beforeDir="false" afterPath="$PROJECT_DIR$/render.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lastnamelist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/names/lastnamelist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/namefile.py" beforeDir="false" afterPath="$PROJECT_DIR$/namefile.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/namelist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/names/namelist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skills.py" beforeDir="false" afterPath="$PROJECT_DIR$/items/skills.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weapons.py" beforeDir="false" afterPath="$PROJECT_DIR$/items/weapons.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +38,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;WilsonChenault&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/WilsonChenault/Cleaver&quot;,
+    &quot;accountId&quot;: &quot;6f2fee1d-454d-4be3-9d9d-0bae2c8fbb2d&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -40,7 +68,10 @@
     "Python.hexcount.executor": "Run",
     "Python.hexcount2.executor": "Run",
     "Python.hextest.executor": "Run",
+    "Python.main.executor": "Run",
     "Python.namefile.executor": "Run",
+    "Python.render.executor": "Run",
+    "Python.scratch.executor": "Run",
     "Python.scratch_2.executor": "Run",
     "Python.scratch_3.executor": "Run",
     "Python.test.executor": "Run",
@@ -57,6 +88,12 @@
     ]
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="P:\Adventures\Coding\Cleaver\items" />
+      <recent name="P:\Adventures\Coding\Cleaver\names" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -80,21 +117,28 @@
       <option name="project" value="LOCAL" />
       <updated>1769116774876</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial commit for Cleaver the Pit!">
+      <option name="closed" value="true" />
+      <created>1780281370480</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1780281370480</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Initial commit for Cleaver the Pit!">
+      <option name="closed" value="true" />
+      <created>1780281393366</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780281393366</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/test.py</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Initial commit for Cleaver the Pit!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit for Cleaver the Pit!" />
   </component>
 </project>
