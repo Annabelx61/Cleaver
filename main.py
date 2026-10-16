@@ -8,6 +8,7 @@ def main():
     screen, hexagons, clock, num_in_direction = render.initialize()
     terminated = False
 
+    mouse_pos = (0, 0)
     while not terminated:
         for event in pygame.event.get():
             # quit event

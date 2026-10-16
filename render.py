@@ -5,10 +5,10 @@ Created on Sun Jan 23 13:50:07 2022
 @author: richa
 """
 
-from hexagon import FlatTopHexagonTile
-from hexagon import HexagonTile
-import numpy as np
+from hexagon import FlatTopHexagonTile, HexagonTile, CharacterTile
 import pygame
+import numpy as np
+from text import text_initialization, render_text
 
 def define_vectors(width: float, height: float, flat_top: bool, inverse: bool = False) -> list:
     """Defines hexagon directional vectors based on flat_top"""
@@ -34,9 +34,12 @@ def create_flat_hex(tile_id: int, position, radius: int | float = 25) -> Hexagon
     hexagon = FlatTopHexagonTile(radius, position, colour = (255, 255, 255), tile_id = tile_id)
     return hexagon
 
+def create_character_hex(radius: float, position, character_id: int, direction: tuple[float, float]) -> CharacterTile:
+    """Creates a character hexagon for the character map"""
+    character_hex = CharacterTile(radius, position, character_id, direction)
+    return character_hex
 
-
-def centered_hexagons(num_in_direction, radius, screen_size, x_offset, flat_top = True):
+def hexagon_map(num_in_direction, radius, screen_size, x_offset, flat_top = True) -> list:
     """Creates a landscape of hexes centered @ 0, 0 pointing in each direction num_in_direction hexes"""
     # Pos. of center hex is defined as window size * 0.5 in both directions
     center_hexagon = create_flat_hex(position=np.array(screen_size) * np.array([0.4, 0.47]) - np.array([x_offset, 0]),
@@ -60,16 +63,53 @@ def centered_hexagons(num_in_direction, radius, screen_size, x_offset, flat_top 
                 hexagons.append(hexagon)
                 clock += 1
 
-    positions = [hexagon.position for hexagon in hexagons] # A list of all hexagon positions
+    return hexagons
 
-    return hexagons, positions
+def character_map(num_in_direction: int, radius: float, initial_pos: tuple[float, float]) -> list:
+    height = np.sqrt(3) * radius
+    width = 2 * radius
+    character_hexagons = []
 
-def render(screen, hexagons):
-    """Renders hexagons on the screen"""
-    screen.fill((255, 255, 255))
+    vectors = define_vectors(width, height, flat_top = True, inverse = True)
+    for i in range(len(vectors)):
+        position = initial_pos + num_in_direction * vectors[i]
+        direction = vectors[(i + 3) % len(vectors)]
+        hexagon = create_character_hex(radius, position, len(character_hexagons), direction)
+
+        character_hexagons.append(hexagon)
+
+    return character_hexagons
+
+def field_map(num_in_direction: int, radius: float, screen_size, x_offset, flat_top = True):
+    hexagons = hexagon_map(num_in_direction, radius, screen_size, x_offset)
+    char_hexagons = character_map(num_in_direction, radius, hexagons[0].position)
+
+    return hexagons, char_hexagons
+
+
+def hovered_hexagons(hexagons: list[HexagonTile]) -> list[HexagonTile]:
+    mouse_pos = pygame.mouse.get_pos()
+    hovered = [
+        hexagon for hexagon in hexagons if hexagon.collide_with_point(mouse_pos)
+    ]
+
+    return hovered
+
+def character_render(screen, hexagons: list[CharacterTile]):
     for hexagon in hexagons:
         hexagon.render(screen)
+        hexagon.draw_direction(screen, hexagon.direction)
 
+def map_render(screen, map_hexagons):
+    """Renders hexagons on the screen"""
+    screen.fill((255, 255, 255))
+
+    # global hexagons, hexagon_ids
+    for hexagon in map_hexagons:
+        hexagon.render(screen)
+
+    # draw borders around colliding hexagons and neighbors
+    colliding_hexagons = hovered_hexagons(map_hexagons)
     # draw borders around colliding hexagons and neighbours
     mouse_pos = pygame.mouse.get_pos()
     colliding_hexagons = [
@@ -89,6 +129,9 @@ def resize(screen, event, num_in_direction):
     radius = (screen_height - margin)/(4 * num_in_direction + 2)
     hexagons, positions = centered_hexagons(num_in_direction, radius, screen_size, screen_size[0] * 0.1)
     return screen, hexagons
+def render(screen, map_hexagons, char_hexagons, message, text_pos):
+    # Text
+    font = text_initialization()
 
 def initialize():
     """ Create the resizable display, initial hexagon grid, and frame clock """
@@ -97,6 +140,9 @@ def initialize():
     screen_width = info.current_w
     screen_size = (screen_width, screen_height)
     screen = pygame.display.set_mode(screen_size, pygame.RESIZABLE)
+    map_render(screen, map_hexagons)
+    character_render(screen, char_hexagons)
+    render_text(font, message, text_pos, screen)
 
     margin = 0.1 * screen_height
     num_in_direction = 10
