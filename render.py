@@ -108,7 +108,7 @@ def map_render(screen, map_hexagons):
     for hexagon in map_hexagons:
         hexagon.render(screen)
 
-    # draw borders around colliding hexagons and neighbours
+    # draw borders around colliding hexagons and neighbors
     colliding_hexagons = hovered_hexagons(map_hexagons)
 
     for hexagon in colliding_hexagons:
