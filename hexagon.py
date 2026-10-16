@@ -30,8 +30,6 @@ class \
     char_present: bool = False
     char_dir: int = 0
 
-    is_selected: bool = False
-
     def __post_init__(self):
         self.vertices = self.compute_vertices()
         self.highlight_tick = 0
@@ -83,17 +81,11 @@ class \
         pygame.draw.polygon(screen, self.highlight_colour, self.vertices)
         pygame.draw.aalines(screen, (0, 0, 0), closed=True, points=self.vertices)
 
-    def selected_highlight(self, screen) -> None:
-        """Draws a border around the hexagon with the specified colour"""
-        self.highlight_tick = self.max_highlight_ticks
-        pygame.draw.polygon(screen, self.selected_colour, self.vertices)
-        pygame.draw.aalines(screen, (0, 0, 0), closed=True, points=self.vertices)
-
     @property
     def centre(self) -> Tuple[float, float]:
         """Centre of the hexagon"""
         x, y = self.position  # pylint: disable=invalid-name
-        return (x, y + self.radius)
+        return x, y + self.radius
 
     @property
     def minimal_radius(self) -> float:
@@ -110,21 +102,6 @@ class \
         light_blue = (179, 251, 255)
 
         return light_blue
-
-    @property
-    def selected_colour(self) -> Tuple[int, ...]:
-        """Color of the hexagon tile when selected"""
-        green = (100, 255, 200)
-
-        return green
-
-    def select(self) -> bool:
-        """When function is run, alternates the 'is_selected' class"""
-        if self.is_selected:
-            return False
-        else:
-            return True
-
 
 class FlatTopHexagonTile(HexagonTile):
     def compute_vertices(self) -> List[Tuple[float, float]]:
@@ -146,4 +123,63 @@ class FlatTopHexagonTile(HexagonTile):
     def centre(self) -> Tuple[float, float]:
         """Centre of the hexagon"""
         x, y = self.position  # pylint: disable=invalid-name
-        return (x + self.radius / 2, y + self.minimal_radius)
+        return x + self.radius / 2, y + self.minimal_radius
+
+@dataclass
+class CharacterTile:
+    """Character tile that lies on top of bottom hexagon map"""
+
+    radius: float
+    position: tuple[float, float]
+
+    character_id: int
+    direction: tuple[float, float]
+
+    def __post_init__(self):
+        self.vertices = self.compute_vertices()
+        self.highlight_tick = 0
+
+    def compute_vertices(self) -> List[Tuple[float, float]]:
+        """Returns a list of the hexagon's vertices as x, y tuples"""
+        x, y = self.position
+        half_radius = self.radius / 2
+        minimal_radius = self.minimal_radius
+        return [
+            (x, y),
+            (x - half_radius, y + minimal_radius),
+            (x, y + 2 * minimal_radius),
+            (x + self.radius, y + 2 * minimal_radius),
+            (x + 3 * half_radius, y + minimal_radius),
+            (x + self.radius, y),
+        ]
+
+    def render(self, screen):
+        """Renders the hexagon on the screen"""
+        pygame.draw.polygon(screen, self.highlight_colour, self.vertices)
+        pygame.draw.aalines(screen, (0, 0, 0), closed=True, points=self.vertices)
+
+    def draw_direction(self, screen, direction):
+        """Draws the vector arrow for the direction"""
+        pygame.draw.aaline(screen, (0, 0, 0), self.centre, self.centre + direction)
+
+    @property
+    def centre(self) -> Tuple[float, float]:
+        """Centre of the hexagon"""
+        x, y = self.position  # pylint: disable=invalid-name
+        return x + self.radius / 2, y + self.minimal_radius
+
+    @property
+    def minimal_radius(self) -> float:
+        """Horizontal length of the hexagon"""
+        # https://en.wikipedia.org/wiki/Hexagon#Parameters
+        return self.radius * math.cos(math.radians(30))
+
+    @property
+    def highlight_colour(self) -> tuple[int, ...]:
+        """Highlight color, depending on enemy vs. player"""
+        if self.character_id == 0:
+            blue = (180, 200, 255)
+            return blue
+        else:
+            red = (255, 200, 200)
+            return red
