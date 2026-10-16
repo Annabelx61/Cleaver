@@ -7,8 +7,8 @@ Created on Sun Jan 23 13:50:07 2022
 
 from hexagon import FlatTopHexagonTile
 from hexagon import HexagonTile
-import pygame
 import numpy as np
+import pygame
 
 def define_vectors(width: float, height: float, flat_top: bool, inverse: bool = False) -> list:
     """Defines hexagon directional vectors based on flat_top"""
@@ -34,10 +34,12 @@ def create_flat_hex(tile_id: int, position, radius: int | float = 25) -> Hexagon
     hexagon = FlatTopHexagonTile(radius, position, colour = (255, 255, 255), tile_id = tile_id)
     return hexagon
 
+
+
 def centered_hexagons(num_in_direction, radius, screen_size, x_offset, flat_top = True):
     """Creates a landscape of hexes centered @ 0, 0 pointing in each direction num_in_direction hexes"""
     # Pos. of center hex is defined as window size * 0.5 in both directions
-    center_hexagon = create_flat_hex(position=np.array(screen_size) * np.array([0.5, 0.5]) - np.array([x_offset, 0]),
+    center_hexagon = create_flat_hex(position=np.array(screen_size) * np.array([0.4, 0.47]) - np.array([x_offset, 0]),
                                     radius = radius, tile_id = 0)
     height = np.sqrt(3) * radius
     width = 2 * radius
@@ -62,39 +64,45 @@ def centered_hexagons(num_in_direction, radius, screen_size, x_offset, flat_top 
 
     return hexagons, positions
 
-def hovered_hexagons(hexagons: list[HexagonTile]) -> list[HexagonTile]:
-    mouse_pos = pygame.mouse.get_pos()
-    hovered = [
-        hexagon for hexagon in hexagons if hexagon.collide_with_point(mouse_pos)
-    ]
-
-    return hovered
-
-def render(screen, input_hexagons):
+def render(screen, hexagons):
     """Renders hexagons on the screen"""
     screen.fill((255, 255, 255))
-
-    hexagons = input_hexagons
-    hexagon_ids = [hexagon.tile_id for hexagon in input_hexagons]
-
-    global hexagons, hexagon_ids
     for hexagon in hexagons:
         hexagon.render(screen)
 
     # draw borders around colliding hexagons and neighbours
-    colliding_hexagons = hovered_hexagons(hexagons)
+    mouse_pos = pygame.mouse.get_pos()
+    colliding_hexagons = [
+        hexagon for hexagon in hexagons if hexagon.collide_with_point(mouse_pos)
+    ]
 
     for hexagon in colliding_hexagons:
-        hexagon.render_highlight(screen)
-
-    mouse_clicked = pygame.mouse.get_pressed(3)
-    # if mouse_clicked:
-    #     hex_id = colliding_hexagons[0].tile_id
-    #     index = hexagon_ids.index(hex_id)
-    #     hexagons
-
-    # selected_hexagons = [
-    #     hexagon if hexagon.is_selected for hexagon in hexagons
-    # ]
-
+        hexagon.render_highlight(screen, border_colour=(0, 0, 0))
     pygame.display.flip()
+
+def resize(screen, event, num_in_direction):
+    """Resize the window and regenerate the new resized hexagon grid."""
+    screen_width, screen_height = event.size
+    screen_size = screen_width, screen_height
+    screen = pygame.display.set_mode(screen_size, pygame.RESIZABLE) 
+    margin = 0.1 * screen_height
+    radius = (screen_height - margin)/(4 * num_in_direction + 2)
+    hexagons, positions = centered_hexagons(num_in_direction, radius, screen_size, screen_size[0] * 0.1)
+    return screen, hexagons
+
+def initialize():
+    """ Create the resizable display, initial hexagon grid, and frame clock """
+    info = pygame.display.Info()
+    screen_height = info.current_h 
+    screen_width = info.current_w
+    screen_size = (screen_width, screen_height)
+    screen = pygame.display.set_mode(screen_size, pygame.RESIZABLE)
+
+    margin = 0.1 * screen_height
+    num_in_direction = 10
+    radius = (screen_height - margin)/(4*num_in_direction+2)
+
+    clock = pygame.time.Clock()
+    hexagons, positions = centered_hexagons(num_in_direction, radius, screen_size, screen_size[0] * 0.1)
+    print(hexagons)
+    return screen, hexagons, clock, num_in_direction
