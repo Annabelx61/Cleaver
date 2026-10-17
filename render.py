@@ -8,7 +8,7 @@ Created on Sun Jan 23 13:50:07 2022
 from hexagon import FlatTopHexagonTile, HexagonTile, CharacterTile
 import pygame
 import numpy as np
-from text import text_initialization, render_text
+import gui, graphics
 
 def define_vectors(width: float, height: float, flat_top: bool, inverse: bool = False) -> list:
     """Defines hexagon directional vectors based on flat_top"""
@@ -99,6 +99,7 @@ def character_render(screen, hexagons: list[CharacterTile]):
     for hexagon in hexagons:
         hexagon.render(screen)
         hexagon.draw_direction(screen, hexagon.direction)
+        graphics.draw_character(screen, hexagon.center, int(hexagon.radius), hexagon.character_id, 0)
 
 def map_render(screen, map_hexagons):
     """Renders hexagons on the screen"""
@@ -134,11 +135,11 @@ def render(screen, hexagons):
 
 def render_with_characters(screen, map_hexagons, char_hexagons, message, text_pos):
     """Renders the map, characters, and text."""
-    font = text_initialization()
+    font = gui.font_initialization()
 
     map_render(screen, map_hexagons)
     character_render(screen, char_hexagons)
-    render_text(font, message, text_pos, screen)
+    gui.render_text(screen, font, message, text_pos)
 
     pygame.display.flip()
 
