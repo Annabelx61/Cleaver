@@ -1,16 +1,25 @@
 import pygame
 
 class InputBox(pygame.Rect):
-    """I'm sure there's a better way to do this. But creating my own 'Rect' class so that
-    I can add my own methods the pygame.Rect class."""
+    """ Constructor Method to initialize the rectangle"""
+    def __init__(self, vertices, font):
+        super().__init__(vertices)
 
-    color_inactive: tuple[int, int, int] = (150, 150, 150)
-    color_active: tuple[int, int, int] = (150, 150, 225)
-    active: bool = False
-    text: str = ''
-    font: pygame.font.Font | None = None
+        self.font = font
+        self.text = ""
+        self.active = False
 
-    color: color_active if active else color_inactive
+        self.color_inactive = (150, 150, 150)
+        self.color_active = (150, 150, 225)
+        
+
+    # Input Box is gray when inactive and blue-purple when active
+    @property
+    def color(self):
+        if self.active:
+            return self.color_active 
+        else: 
+            return self.color_inactive
 
     def activate(self):
         if not self.active:
@@ -19,42 +28,30 @@ class InputBox(pygame.Rect):
             self.active = False
 
     def render(self, screen):
+        """ Draw the input box and its current text onto the screen. """
         pygame.draw.rect(screen, self.color, self, 2)
-        render_text(screen, self.font, self.text, (self.x + 5, self.y + 5))
+        text_surface = self.font.render(self.text, True, (0,0,0)) # calling render on self.font to turn it into a image like surface
+        screen.blit(text_surface, (self.x + 5, self.y + 5)) # using screen.blitz(surface, position) to draw that surface on the screen
 
     def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONDOWN: # I RECOGNIZE THIS IS DOUBLE-CHECKED BUT ITS 2 AM
-            if self.collidepoint(event.pos):  # Checks if event click was on InputBox
-                if not self.active:  # If yes, flips the InputBox.active boolean if not active
-                    self.activate()
-            elif self.active:  # If no, deactivates it
-                self.activate()
-        elif event.type == pygame.KEYDOWN: # I RECOGNIZE THIS IS DOUBLE-CHECKED BUT ITS 2 AM
-            if self.active:  # Makes sure the InputBox has been selected
-                if event.key == pygame.K_RETURN:  # Key loop + string manipulation
-                    self.activate()
-                    text = self.text
-                elif event.key == pygame.K_BACKSPACE:
-                    self.text = self.text[:-1]
-                else:
-                    self.text += event.unicode
-
-    @property
-    def color(self):
-        return self.color_active if self.active else self.color_inactive
-
-
-
-
+         # I RECOGNIZE THIS IS DOUBLE-CHECKED BUT ITS 2 AM ----- LMAOOO 
+        if event.type == pygame.MOUSEBUTTONDOWN: 
+            if self.collidepoint(event.pos):  
+                self.active()
+        elif event.type == pygame.KEYDOWN and self.active: 
+            if event.key == pygame.K_BACKSPACE:
+                self.text = self.text[:-1]
+            elif event.key != pygame.K_RETURN:  
+                self.text += event.unicode
 
 def font_initialization(size: int = 24):
     font = pygame.font.SysFont("Times New Roman", size)
     return font
 
-def render_text(screen, font, message: str, position: tuple[float, float]):
+def render_text(screen, font, message, position):
     if font is None:
         font = font_initialization()
-
+        
     text = font.render(message, False, (0, 0, 0))
     screen.blit(text, position)
 
