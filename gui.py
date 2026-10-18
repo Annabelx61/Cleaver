@@ -35,10 +35,9 @@ class InputBox(pygame.Rect):
         screen.blit(text_surface, (self.x + 5, self.y + 5)) # using screen.blitz(surface, position) to draw that surface on the screen
 
     def handle_event(self, event):
-         # I RECOGNIZE THIS IS DOUBLE-CHECKED BUT ITS 2 AM ----- LMAOOO 
         if event.type == pygame.MOUSEBUTTONDOWN: 
             if self.collidepoint(event.pos):  
-                self.active()
+                self.activate()
         elif event.type == pygame.KEYDOWN and self.active: 
             if event.key == pygame.K_BACKSPACE:
                 self.text = self.text[:-1]
@@ -117,48 +116,21 @@ class Button:
     message: str = ''
     font: pygame.font.Font | None = None
 
+    @property
+    def position(self):
+        x = self.x_offset - self.dimension[0] / 2
+        y = self.y_offset - self.dimension[1] / 2
+        return (x, y)
 
-    def render(self):
-        x, y = self.position
-        w, h = self.dimension
-
-        button_text = Text(self.screen, int(h), self.message, x, y)
-
-        while button_text.width > int(self.dimension[0]):
-            self.dimension = (button_text.width + h, self.dimension[1])
-
-        # Loop to add margins to the edges of the box and the text
-        while int(self.dimension[0] - button_text.width) < h:
-            self.dimension = (self.dimension[0] + 1, self.dimension[1])
-
-        # ITS LATE and i cannot think of a better solution. If I try to add
-        # height margins, it becomes a recursive issue since the dimension
-        # is called at the start of the function. I could probably break
-        # this function up and make it way better, but that's a later task.
-        #
-        # This little bit just creates a new set of dimensions with margins
-        # that do NOT recursively cause the button to grow infinitely.
-        if int(self.dimension[0] - button_text.width) == h:
-            x_margin = h
-        else:
-            x_margin = self.dimension[0] - button_text.width
-        y_margin = 0.2 * h
-        adjusted_dimension = (self.dimension[0], self.dimension[1] + y_margin)
-
-        button_fill = pygame.Rect(self.position, adjusted_dimension)
-        button_border = pygame.Rect(self.position, adjusted_dimension)
-
-        pygame.draw.rect(self.screen, self.color, button_fill, 0)
-        pygame.draw.rect(self.screen, self.border_color, button_border, 2)
-
-        button_pos = (x + 0.5 * x_margin,
-                      y + 0.2 * y_margin)
-        button_text.render(button_pos)
-
-    # WIP
-    def handle_event(self, event):
-        x = 1
-
+    @property
+    def rect(self):
+        # Using pygame.Rect to get the button top-left position, width and height
+        return pygame.Rect(
+            int(self.position[0]),
+            int(self.position[1]),
+            int(self.dimension[0]),
+            int(self.dimension[1])
+        )
 
     @property
     def color(self):
@@ -171,16 +143,36 @@ class Button:
 
     @property
     def border_color(self):
-        color = (0, 0, 0)
-        return color
+        return (0, 0, 0)
 
-    @property
-    def position(self) -> tuple[float, float]:
+    def render(self):
+        x, y = self.position
+        w, h = self.dimension
 
-        position = (self.x_offset - 0.5 * self.dimension[0],
-                    self.y_offset - 0.5 * self.dimension[1])
+        button_rect = pygame.Rect(x, y, w, h)
 
-        return position
+        # Draws the button based on its hover state (self.color or self.border_color)
+        pygame.draw.rect(self.screen, self.color, button_rect)
+        pygame.draw.rect(self.screen, self.border_color, button_rect, width = 2)
+
+        # Center the text in the button
+        font = pygame.font.SysFont("Times New Roman", int(h * 0.6))
+        text = font.render(self.message, True, (0,0,0))
+        # .get_rect() -> returns a pygame.Rect that matches the text size, thank you ai
+        text_rect = text.get_rect(center = self.rect.center) 
+        self.screen.blit(text, text_rect)
+
+    def handle_event(self, event):
+        # hightlight when the mouse moves on the button
+        if event.type == pygame.MOUSEMOTION:
+            self.active = self.rect.collidepoint(event.pos)
+
+        # For now return True only when the button is clicked
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            # event.button == 1 -> left click, 2 -> middle click, 3 -> right click
+            if event.button == 1 and self.rect.collidepoint(event.pos):
+                return True
+        return False
 
 
 def font_initialization(size: int = 24):
@@ -198,9 +190,9 @@ def render_text(screen, font, message: str, position: tuple[float, float], cente
 
 def main_menu(screen) -> tuple[list, list]:
     screen.fill((255, 255, 255))
-    info = pygame.display.Info() # finding window width/height; stolen from Anna
-    screen_height = info.current_h
-    screen_width = info.current_w
+    # oops I think we need to get the windows size instead of the monitor's size :p
+    screen_height = screen.get_height()
+    screen_width = screen.get_width()
 
     title_text = "Cleaver the Pit"
     subtitle_text = "Wilson Chenault & Annabel Mehari"
@@ -210,9 +202,9 @@ def main_menu(screen) -> tuple[list, list]:
     settings_button = "Settings"
 
     objects = [
-        Button(screen, (200, 40), screen_width * 0.5, screen_height * 0.5,
+        Button(screen, (300, 80), screen_width * 0.5, screen_height * 0.48,
                message = play_button),
-        Button(screen, (200, 40), screen_width * 0.5, screen_height * 0.57,
+        Button(screen, (300, 80), screen_width * 0.5, screen_height * 0.60,
                message = settings_button)
     ]
 
@@ -230,6 +222,6 @@ def main_menu(screen) -> tuple[list, list]:
 
 def input_box(screen, font, vertices: tuple[float, ...]) -> InputBox:
     """Renders input box"""
-    box = InputBox(vertices)
+    box = InputBox(vertices, font)
 
     return box
